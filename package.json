@@ -1,0 +1,27 @@
+{
+  "name": "hotstar",
+  "version": "1.0.0",
+  "description": "MEAN Hotstar ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkashNan/Hotstar_MEAN_Stack.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Hotstar"
+  ],
+  "author": "Akash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkashNan/Hotstar_MEAN_Stack/issues"
+  },
+  "homepage": "https://github.com/AkashNan/Hotstar_MEAN_Stack#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15"
+  }
+}
