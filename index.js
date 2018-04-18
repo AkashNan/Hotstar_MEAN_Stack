@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const config = require("./config/database")
 const path = require('path');
 const api = require('./routes/api')(router);
+const bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, (err) => {
@@ -18,6 +19,12 @@ mongoose.connect(config.uri, (err) => {
 	 }
 });
 
+// Provide static directory for frontend
+// parse application/x-www-form-urlencode
+app.use(bodyParser.urlencoded({extended : false}));
+// middleware
+
+app.use(bodyParser.json());
 app.use('/api', api);
 app.use(express.static(__dirname + '/Client/dist/'));
 
