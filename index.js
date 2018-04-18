@@ -1,8 +1,10 @@
 var express = require('express');
 var app = express();
+var router = express.Router();
 const mongoose = require('mongoose');
 const config = require("./config/database")
 const path = require('path');
+const api = require('./routes/api')(router);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, (err) => {
@@ -16,9 +18,11 @@ mongoose.connect(config.uri, (err) => {
 	 }
 });
 
+app.use('/api', api);
 app.use(express.static(__dirname + '/Client/dist/'));
 
-app.get('*', (req, res) => {
+
+app.get('/', (req, res) => {
    //res.send("<h1>Hello Server</h1>");
    res.sendFile(path.join(__dirname + '/Client/dist/index.html'));
 })
