@@ -24,4 +24,5 @@ const Schema = mongoose.Schema;
      }      
   });
 
-  module.exports = mongoose.model("BallUpdate[", ballSchema);
+
+  module.exports = mongoose.model("BallUpdate", ballSchema);

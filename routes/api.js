@@ -1,4 +1,6 @@
 const ballUpdate = require('../models/BallUpdate');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 module.exports = (router) => {
 
@@ -38,5 +40,20 @@ module.exports = (router) => {
 		//res.send('Ball update Service:' + req.body.matchNumber);
 
 	});
+
+	// Get the balldetails based on match number, inning number, over number
+	router.post('/getOverDetails', (req,res) => {
+			console.log(req.body)
+		    ballUpdate.find({'matchNumber': req.body.matchNumber, 'innings.inningNumber': req.body.inningNumber, 'innings.overs.overNumber' : req.body.overNumber}).exec(function(err, data) {
+			 		if(err){
+			 			res.json({success: false, messsage : 'Could not get the details of over. Error:' + err})
+			 		}
+			 		else{
+			 			res.send(data);
+			 		}
+			}); 
+		
+	});
+  
 	return router;
 }
