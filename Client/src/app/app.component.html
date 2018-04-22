@@ -1,7 +1,224 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <h1>
-    {{ title }}!
-  </h1>
- 
-</div>
+<app-navbar></app-navbar>
+<body>
+
+	<div class="main-container">
+		<!--Select game container -->
+		<div class="row">
+			<div class="col-sm-12">
+			      <div class="select-game-container">
+					  <select class="custom-select">
+                      <option value="null" disabled> Select Game</option>
+					  <option value="volvo">Team A Vs Team B</option>
+					  <option value="saab">Team C Vs Team D</option>					  
+					</select>
+                    
+					<button type="button" class="btn btn-success w-150 float-right mr-3 disabled" disabled>End Inning</button>
+					
+				  </div>			   
+			</div>
+		</div>
+
+		<!--Bowling team container -->
+		<div class="row bowling-team-container">
+			<div class="col-sm-12">
+			    <div>
+			    	<form class="form-inline">
+			          <div class="bowling-row">
+			            <div class="form-group">
+			              <label>Bowling Team :</label> 		             
+			            </div>
+			            <div class="form-group ml-30">			              
+			              <input type="radio" class="form-control" id="teamA" name="team" (change) = "selectBowlingTeam($event)">
+			              <label class="ml-20" for="teamA">Team A</label> 
+			            </div>
+			            <div class="form-group ml-30">			              
+			              <input type="radio" class="form-control" id="teamB" name="team" (change) = "selectBowlingTeam($event)">
+			              <label class="ml-20" for="teamB">Team B</label> 
+			            </div>
+			             <div class="form-group ml-50">			              
+			              <button type="button" class="btn btn-success w-150 startMatch disabled" (click)= "startMatch()" disabled>Start Match</button>
+			            </div>
+			          </div>
+					</form>
+				</div>			   
+			</div>
+		</div>
+
+
+		<hr class="feature-seperator">
+<!-- Below div will only be enabled once user start the match..... Defautl tab will be Innings 1 -->
+<div class="innings-master-container not-editable">
+        <!--Innings tab container -->
+        <div class="col-sm-12 row">
+			<div class="col-sm-6" style="padding-right: 0px;">
+			    <div class="float-right inning1-tab" (click)="Innings1Handler()">
+			    	Innings 1
+			    </div>
+			</div>
+			<div class="col-sm-6" style="padding-left: 0px;">
+			    <div class="inning2-tab" (click)="Innings2Handler()">
+			    	Innings 2
+			    </div>
+			</div>
+		</div>
+
+         <!--Over highligher container -->
+ 		<div class="col-sm-12">
+			<div class="wrapper">           
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel over-highligher-container" data-jcarousel="true">
+                    <ul style="left: -400px; top: 0px;" class="progressbar">
+                        <li>Over 1</li>
+			            <li class="active">Over 2</li>
+			            <li>Over 3</li>
+			            <li>Over 4</li>
+			            <li>Over 5</li>
+			            <li>Over 6</li>
+			            <li>Over 7</li>
+			            <li>Over 8</li>
+			            <li>Over 9</li>
+			            <li>Over 10</li>
+			            <li>Over 11</li>
+			            <li>Over 12</li>
+			            <li>Over 13</li>
+			            <li>Over 15</li>
+			            <li>Over 16</li>
+			            <li>Over 17</li>
+			            <li>Over 18</li>
+			            <li>Over 19</li>
+			            <li>Over 20</li>
+	                    </ul>
+	                </div>
+
+                <a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true">‹</a>
+                <a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true">›</a>
+
+                <p class="jcarousel-pagination" style="display:none;" data-jcarouselpagination="true"><a href="#1" class="">1</a><a href="#2" class="">2</a><a href="#3" class="active">3</a><a href="#4">4</a><a href="#5">5</a><a href="#6">6</a></p>
+            </div>
+        </div>
+		</div>
+
+		<!--Bowler info container -->
+		<div class="row">
+			<div class="col-sm-12">
+			      <div class="bowlers-name-container">
+					  <select class="bowler-select selectpicker" id="bowler-name" data-live-search="true">
+                      <option value="null">Bowlers Name</option>
+					  <option data-tokens="Bumrah" value="volvo">Bumrah</option>
+					  <option data-tokens="Umesh Yadav" value="saab">Umesh Yadav</option>
+					  <option data-tokens="Chris Gayle" value="mercedes">Chris Gayle</option>
+					  <option data-tokens="Dhoni" value="audi">Dhoni</option>
+					</select>
+                    
+					<label class="ml-8">Bowlerd Type: <span>Right hand (Spinner) </span></label>
+					
+				  </div>			   
+			</div>
+		</div>
+
+		<!-- Ball Details container -->
+		<div class="row" style="margin-left: 27px;margin-right: 3px;">
+			<div class="col-sm-12">
+				<div>
+				    <div id="accordion" class="accordion">
+				        <div class="card mb-0">
+				            <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+				                <span class="row font-bold">
+				                <a class="col-sm-2 card-title">
+				                    <span class="left"> 1 </span>
+				                    Release
+				                </a>
+				                <a class="col-sm-2 card-title">
+				                    Land
+				                </a>
+				                <a class="col-sm-2 card-title">
+				                    Bounce
+				                </a>
+				                <a class="col-sm-2 card-title">
+				                    Runs
+				                </a>
+				                <a class="col-sm-2 card-title">
+				                    Wickets
+				                </a>
+				                <a class="col-sm-2 card-title">
+				                    <!-- Finish -->
+				                </a>
+                                </span>
+				            </div>
+				            <div id="collapseOne" class="card-body collapse shadow-sm bg-white rounded" data-parent="#accordion" >
+				            	<span class="row font-bold">
+					                <div class="col-sm-2 card-title">
+					                	<img src="../assets/images/image release green@4x.png" width="100" height="100">
+					                </div>
+					                <div class="col-sm-2 card-title">
+					                	<img src="../assets/images/Asset 39@4x.png" width="120" height="120">
+					                </div>
+					                <div class="col-sm-2 card-title" style="border-right: 1px solid lightgray;">
+					                	<img src="../assets/images/bounce red@4x.png" width="120" height="120">
+					                </div>
+					                <div class="col-sm-2 card-title parent-inline-block">					                
+					                	<div class="circleBase type1 inline-block">0</div>				                	
+					                	<div class="circleBase type1 inline-block">1</div>
+					                	<div class="circleBase type1 inline-block">2</div>
+					                	<div class="circleBase type1 inline-block break">3</div>				                	
+					                	<div class="circleBase type1 inline-block">4</div>
+					                	<div class="circleBase type1 inline-block">5</div>
+					                	<div class="circleBase type1 inline-block break">6</div>
+					                	<div class="circleBase type1 inline-block">7</div>
+					                </div>
+					                <div class="col-sm-2" style="margin-top: -20px;">
+					                	<p style="margin-bottom: 30px;"><input type="checkbox" id="wicket-indicator"><label for="wicket-indicator"><span class="ui"></span></label></p>
+					                	<div class="form-group ml-66 mb-3 font-normal">			              
+					                       <input type="radio" class="form-control" id="caught" name="wicket">
+					                       <label class="ml-20" for="caught">Caught</label> 
+					                    </div>
+					                    <div class="form-group ml-66 mb-3 font-normal">			              
+					                       <input type="radio" class="form-control" id="bowled" name="wicket">
+					                       <label class="ml-20" for="bowled">Bowled</label> 
+					                    </div>
+					                    <div class="form-group ml-59 mb-3 font-normal">			              
+					                       <input type="radio" class="form-control" id="runout" name="wicket">
+					                       <label class="ml-20" for="runout">Run Out</label> 
+					                    </div>
+					                    <div class="form-group ml-77 mb-3 font-normal">			              
+					                       <input type="radio" class="form-control" id="other" name="wicket">
+					                       <label class="ml-20" for="other">Other</label> 
+					                    </div>
+					                </div>
+					                 <div class="col-sm-2 card-title" style="margin-top:104px;">
+					                	<button type="button" class="btn btn-success w-150 mr-3 ">Finish</button>
+					                </div>
+				            	</span>
+				            </div>
+				            <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+				                <a class="card-title">
+				                  Item 2
+				                </a>
+				            </div>
+				            <div id="collapseTwo" class="card-body collapse" data-parent="#accordion" >
+				                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+				                    aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+				                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				                </p>
+				            </div>				     
+				        </div>
+				    </div>
+				</div>
+
+			</div>
+		</div>
+</div>					
+
+
+
+
+
+
+
+
+
+
+	</div>	 
+
+</body>
